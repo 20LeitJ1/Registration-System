@@ -1,15 +1,19 @@
 # Sub Programs
 def ErrorCode(code):
-    codes = {
-        0: "Username must be at least 5 characters long",
-        1: "Username must only contain alphanumeric characters",
-        2: "Password must be at least 8 characters long",
-        3: "Password must contain an uppercase and a lowercase character",
-        4: "Password must contain a digit",
-        5: "Email must contain '@' symbol",
-        6: "Phone number must be 11 digits long"
-    }
-    print(codes.get(code,"Invalid input") )
+    if(code == 0):
+        print("Username must be at least 5 characters long")
+    if(code == 1):
+        print("Username must only contain alphanumeric characters")
+    if(code == 2):
+        print("Password must be at least 8 characters long")
+    if(code == 3):
+        print("Password must contain an uppercase and a lowercase character")
+    if(code == 4):
+        print("Password must contain a digit")
+    if(code == 5):
+        print("Email must contain '@' symbol")
+    if(code == 6):
+        print("Phone number must be 11 digits long")
 
 def VerifyCode(code):
     if(code == 0):
@@ -49,7 +53,7 @@ def CreatePassword():
 
 def AddEmail():
     value = input("What is your email: ")
-    if("@" in value and "." in value):
+    if(ContainsCharacter(value, "@")):
         VerifyCode(2)
         return value, 0b0000_0100
     else:
@@ -81,6 +85,13 @@ def ContainsDigit(value):
         if(value[x].isdigit()):
             containsDigit = True
     return containsDigit
+
+def ContainsCharacter(value, char):
+    containsChar = False
+    for x in range(len(value)):
+        if(value[x] == char):
+            containsChar = True
+    return containsChar
 
 def CheckIfValidFormat(value):
     valid = True
